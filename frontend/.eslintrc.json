@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:import/recommended"
+  ],
+  "plugins": ["import"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
+  "rules": {
+    "import/no-unresolved": "off"
+  }
+}

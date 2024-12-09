@@ -1,0 +1,10 @@
+.content {
+  font-weight: 500;
+  font-size: 23px;
+  color: #1e5ede;
+}
+@media (max-width: 700px) {
+  .content {
+    font-size: 16px;
+  }
+}/*# sourceMappingURL=HeadingSix.module.css.map */

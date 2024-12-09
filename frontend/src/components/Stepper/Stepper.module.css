@@ -1,0 +1,248 @@
+.stepper-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1000px 300px;
+  justify-content: center;
+  max-width: 1300px;
+  margin: 3rem auto;
+  min-height: 750px;
+  box-shadow: 0px 5px 65px 0px rgba(0, 0, 0, 0.29);
+}
+@media (max-width: 1024px) {
+  .stepper-container {
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px 1fr;
+    margin: 0;
+  }
+}
+
+.step-container {
+  background-color: #fffbfc;
+  min-height: 662px;
+}
+@media (max-width: 1024px) {
+  .step-container {
+    order: 2;
+  }
+}
+
+.stepper {
+  min-height: 762px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #1e5ede;
+  background-image: url(./bg.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 1rem;
+}
+@media (max-width: 1024px) {
+  .stepper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.3rem;
+    order: 1;
+    min-height: 50px;
+    width: 100vw;
+  }
+}
+
+.step:first-child {
+  margin-top: 1rem;
+}
+@media (max-width: 1024px) {
+  .step:first-child {
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
+.step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 2rem;
+  position: relative;
+  text-align: center;
+}
+@media (max-width: 1024px) {
+  .step {
+    margin-left: 0.3rem;
+    align-items: center;
+  }
+}
+
+.step:not(:last-of-type):after {
+  content: "";
+  display: block;
+  transform: translateX(1.4rem);
+  display: block;
+  width: 2px;
+  height: 15px;
+  background-color: rgb(96, 118, 209);
+  z-index: 1;
+}
+@media (max-width: 1024px) {
+  .step:not(:last-of-type):after {
+    display: none;
+  }
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ddd;
+  color: #fff;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.step-title {
+  font-size: 14px;
+  color: #666;
+}
+@media (max-width: 1024px) {
+  .step-title {
+    display: none;
+  }
+}
+
+.step-title-mobview {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .step-title-mobview {
+    display: block;
+    color: #fff;
+  }
+}
+
+.step-icon {
+  height: 30px;
+  width: auto;
+  border-radius: 50%;
+}
+@media (max-width: 400px) {
+  .step-icon {
+    height: 20px;
+    width: auto;
+  }
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgb(96, 118, 209);
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+@media (max-width: 500px) {
+  .step-number {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+.step.active .step-number {
+  background-color: #031231;
+}
+
+/* Stepper controls */
+.stepper-controls {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+@media (max-width: 1024px) {
+  .stepper-controls {
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.btn {
+  padding: 10px 20px;
+  width: 15rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 19px;
+}
+@media (max-width: 1024px) {
+  .btn {
+    padding: 5px 8px;
+    width: 100px;
+    font-size: 18px;
+  }
+}
+
+.last-btn {
+  background-color: var(--color-text);
+  padding: 10px 20px;
+  width: 15rem;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 19px;
+}
+@media (max-width: 1024px) {
+  .last-btn {
+    padding: 5px 8px;
+    width: 100px;
+    font-size: 18px;
+  }
+}
+
+.btn:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.btn:not(:disabled):hover {
+  background-color: #2980b9;
+}
+
+.progress-bar-container {
+  color: #fff;
+  width: 70%;
+  margin-left: 2rem;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+@media (max-width: 1024px) {
+  .progress-bar-container {
+    display: none;
+  }
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: rgb(96, 118, 209);
+  width: 0%; /* Will be dynamically updated */
+  transition: width 0.3s ease-in-out;
+}/*# sourceMappingURL=Stepper.module.css.map */

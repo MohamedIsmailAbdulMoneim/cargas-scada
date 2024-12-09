@@ -1,0 +1,87 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.input-container .input-label {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.input-container_column {
+  position: relative;
+  display: grid;
+  grid-template-columns: 100px 400px;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+.input-container_column .input-label {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+@media (max-width: 1000px) {
+  .input-container_column {
+    grid-template-columns: none;
+  }
+}
+
+.select {
+  border-radius: 8px;
+  width: 30rem;
+  padding: 1rem;
+  border: none;
+}
+
+.bigger-input {
+  width: 370px;
+  height: 80px;
+}
+@media (max-width: 390px) {
+  .bigger-input {
+    height: 50px;
+    width: 90vw;
+  }
+}
+@media (min-width: 390px) and (max-width: 900px) {
+  .bigger-input {
+    height: 50px;
+    width: 350px;
+  }
+}
+
+.big-input {
+  width: 79rem;
+  height: 50px;
+}
+@media (max-width: 1000px) {
+  .big-input {
+    width: 300px;
+  }
+}
+
+.med-input {
+  width: 30rem;
+  height: 50px;
+}
+@media (max-width: 390px) {
+  .med-input {
+    width: 90vw;
+  }
+}
+@media (min-width: 390px) and (max-width: 900px) {
+  .med-input {
+    width: 350px;
+  }
+}
+
+.small-input {
+  width: 25rem;
+  height: 50px;
+}
+@media (max-width: 900px) {
+  .small-input {
+    width: 300px;
+  }
+}/*# sourceMappingURL=Select.module.css.map */

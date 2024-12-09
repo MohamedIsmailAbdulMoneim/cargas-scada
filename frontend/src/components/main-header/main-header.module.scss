@@ -1,0 +1,119 @@
+/* Header Styling */
+.header {
+  background-color: #1a1a1a; /* Dark background */
+  color: #f5f5f5;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+/* Logo */
+.logo img {
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Navigation Menu */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+  color: #0070f3; /* Accent color */
+}
+
+/* Mobile Menu Hidden by Default */
+.nav {
+  display: none;
+}
+
+.navOpen {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background-color: #1a1a1a;
+  width: 100%;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Menu Toggle Button */
+.menuToggle {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
+  height: 1.5rem;
+}
+
+.menuToggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: #f5f5f5;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.barOpen {
+  background-color: #0070f3; /* Accent color for open menu */
+  transform: rotate(45deg);
+}
+
+.barOpen:nth-child(2) {
+  transform: rotate(-45deg);
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+    gap: 2rem;
+    position: static;
+    background: none;
+    padding: 0;
+    flex-direction: row;
+  }
+
+  .menuToggle {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .menuToggle {
+    display: flex;
+  }
+}

@@ -1,0 +1,35 @@
+.table {
+  width: 60%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  font-size: 16px;
+  text-align: left;
+}
+
+.table th, .table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.detailsButton {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.detailsButton:hover {
+  background-color: #0056b3;
+}/*# sourceMappingURL=Table.module.css.map */

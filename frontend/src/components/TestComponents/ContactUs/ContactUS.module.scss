@@ -1,0 +1,57 @@
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.card {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.flag {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.title {
+    color: #555;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.description {
+    color: #888;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-number {
+    color: #f74c2e;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+
+.whatsapp-icon svg:hover {
+    color: #128C7E;
+}

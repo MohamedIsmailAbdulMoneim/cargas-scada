@@ -1,0 +1,43 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.input-container .input-label {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.phone-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input {
+  width: 13rem;
+  height: 46px;
+  border-radius: 8px;
+  padding: 1rem;
+  border: none;
+  outline: none;
+}
+@media (max-width: 900px) {
+  .input {
+    width: 100px;
+  }
+}
+
+.input-phone {
+  width: 11.5rem;
+  height: 46px;
+  border-radius: 8px;
+  padding: 1rem;
+  border: none;
+  outline: none;
+}
+@media (max-width: 900px) {
+  .input-phone {
+    width: 190px;
+  }
+}/*# sourceMappingURL=PhoneInput.module.css.map */

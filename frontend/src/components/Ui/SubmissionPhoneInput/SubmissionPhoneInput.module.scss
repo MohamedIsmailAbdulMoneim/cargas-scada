@@ -1,0 +1,75 @@
+.input-container {
+    // position: relative;
+    // display: grid;
+    // grid-template-columns: 0.5fr 2fr;
+    // gap: 1rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 100px 400px ;
+    justify-content: center;
+    gap: 1rem;
+    .input-label {
+        font-size: 19px;
+        font-weight: 500;
+    }
+    .input-label {
+        font-size: 19px;
+        font-weight: 500;
+    }
+    @media (max-width: 1000px) {
+        grid-template-columns: none;
+        // grid-template-rows: 1fr 2fr;
+    }
+
+}
+
+.phone-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.input {
+    width: 2rem;
+    height: 80px;
+    width: 150px;
+    padding: 1rem 3rem ;
+    border: 3px solid #2440a2;
+    outline: none;
+
+
+    @media (max-width: 390px) {
+        height: 50px;
+        width: 37vw;
+        
+    }
+
+    @media (min-width: 390px) and  (max-width: 900px) {
+        height: 50px;
+        width: 14rem;
+    }
+    
+
+}
+
+
+.input-phone {
+    width:  210px;
+    height: 46px;
+    padding: 1rem 3rem ;
+    border: 3px solid #2440a2;
+    outline: none;
+    height: 80px;
+
+
+    @media (max-width: 390px) {
+        height: 50px;
+        width: 50vw;
+        
+    }
+
+    @media (min-width: 390px) and  (max-width: 900px) {
+        height: 50px;
+        width: 20rem;
+    }
+}
+

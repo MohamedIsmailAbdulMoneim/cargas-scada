@@ -1,0 +1,16 @@
+.footer {
+  display: var(--footer-display);
+  padding: 1rem 0;
+  font-size: var(--font-size-15);
+  background-color: var(--color-text);
+  color: var(--color-background);
+  margin-top: auto;
+}
+.footer span {
+  margin-left: 6rem;
+}
+@media (max-width: 1200px) {
+  .footer span {
+    margin-left: 1rem;
+  }
+}/*# sourceMappingURL=footer.module.css.map */

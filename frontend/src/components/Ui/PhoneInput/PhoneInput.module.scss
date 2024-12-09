@@ -1,0 +1,42 @@
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    .input-label {
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+
+}
+
+.phone-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input {
+    width: 13rem;
+    height: 46px;
+    border-radius: 8px;
+    padding: 1rem;
+    border: none;
+    outline: none;
+    @media (max-width: 900px) {
+        width: 100px;
+    }
+}
+
+
+.input-phone {
+    width: 11.5rem;
+    height: 46px;
+    border-radius: 8px;
+    padding: 1rem;
+    border: none;
+    outline: none;
+    @media (max-width: 900px) {
+        width: 190px;
+    }
+}

@@ -1,0 +1,18 @@
+.container {
+    border: 1px solid #e5e7e8;
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+
+    @media (max-width: 900px) {
+        width: 90vw;
+    }
+}
+
+.col-two {
+    grid-column: 2 / -1;
+}
+

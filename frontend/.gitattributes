@@ -1,0 +1,3 @@
+sentry.client.config.js filter=ignore-line-client
+sentry.edge.config.js filter=ignore-line-edge
+sentry.server.config.js filter=ignore-line-server

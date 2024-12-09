@@ -1,0 +1,46 @@
+/* modal.module.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    
+  }
+  
+  .modal-content {
+    padding: 20px;
+    width: 30rem;
+    height: 30rem;
+    overflow-y: auto;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
+  }
+  
+
+  .modal-name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  .modal-buttons {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+
+  }
