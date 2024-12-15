@@ -2,56 +2,75 @@
 
 import React, { useState, useEffect } from 'react';
 import './StudentInformation.scss';
+import { useFormState } from 'react-dom';
+import { insertConsumptionForm } from '@/lib/consumption/consumptionLib';
+import correct from '@/assets/correct.svg';
+import Image from 'next/image';
+import data from '@/assets/static_data/data.json';
 
 const AnimatedForm = () => {
   const [formVisible, setFormVisible] = useState(false);
-  const [inputs, setInputs] = useState([]);
+  const [dispensers, setDispensers] = useState([
+    { id: 'dispenser_1', label: 'Dispenser 1' },
+  ]);
+  const [dispensersValues, setDispensersValues] = useState({});
+  const [state, formAction] = useFormState(insertConsumptionForm, {
+    message: '',
+    severity: '',
+  });
 
   useEffect(() => {
-    // Trigger the animation after the component mounts
     setTimeout(() => setFormVisible(true), 200);
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted', inputs);
+  const addDispenser = () => {
+    const newDispenserId = `dispenser_${dispensers.length + 1}`;
+    setDispensers((prev) => [
+      ...prev,
+      { id: newDispenserId, label: `Dispenser ${dispensers.length + 1}` },
+    ]);
+    setDispensersValues((prev) => ({ ...prev, [newDispenserId]: 0 }));
   };
 
-  const handleSelectChange = (event) => {
-    const selectedValue = event.target.value;
-    console.log(event.current);
-
-    // Check if the input for the selected value already exists
-    if (!inputs.find((input) => input.id === selectedValue)) {
-      setInputs((prevInputs) => [
-        ...prevInputs,
-        {
-          id: selectedValue,
-          label: `إدخال مرتبط لـ ${selectedValue}`,
-          index: event.target.getAttribute('index'),
-        },
-      ]);
-    }
+  const removeDispenser = (id) => {
+    setDispensers((prev) => prev.filter((dispenser) => dispenser.id !== id));
+    setDispensersValues((prev) => {
+      const newValues = { ...prev };
+      delete newValues[id];
+      return newValues;
+    });
   };
 
-  const removeInput = (id) => {
-    setInputs((prevInputs) => prevInputs.filter((input) => input.id !== id));
+  const handleDispenserChange = (id, value) => {
+    setDispensersValues((prev) => ({
+      ...prev,
+      [id]: value === '' ? 0 : Number(value),
+    }));
   };
 
-  return (
+  const totalConsumption = Object.values(dispensersValues).reduce(
+    (prev, acc) => prev + acc,
+    0,
+  );
+
+  return state.message !== 'Valid data' ? (
     <div className={`form-container ${formVisible ? 'visible' : ''}`}>
       <h2 className="form-title">حساب الإستهلاك اليومي</h2>
-      <form dir="rtl" className="form" onSubmit={handleSubmit}>
+      <form dir="rtl" className="form" action={formAction}>
         {/* Governorate Input */}
         <div className="input-wrapper">
-          <label htmlFor="governorate">المحافظة</label>
-          <input id="governorate" name="governorate" required />
+          <label htmlFor="area">المحافظة</label>
+          <select id="area" name="area_name" required>
+            <option value="">اختر المحافظة</option>
+            <option value="east_cairo">شرق القاهرة</option>
+            <option value="west_cairo">غرب القاهرة</option>
+          </select>
         </div>
 
         {/* Area Selection */}
         <div className="input-wrapper">
           <label htmlFor="area">المنطقة</label>
-          <select id="area" name="area" onChange={handleSelectChange} required>
+          <select id="area" name="area_name" required>
             <option value="">اختر المنطقة</option>
             <option value="east_cairo">شرق القاهرة</option>
             <option value="west_cairo">غرب القاهرة</option>
@@ -59,57 +78,65 @@ const AnimatedForm = () => {
         </div>
 
         <div className="input-wrapper">
-          <label htmlFor="governorate">المحطة</label>
-          <input id="governorate" name="governorate" required />
+          <label htmlFor="station">المحطة</label>
+          <input id="station" name="station_name" required />
         </div>
 
-        {/* Dispenser Selection */}
-        <div className="input-wrapper">
-          <label htmlFor="dispenser">ديسبنسر</label>
-          <select
-            id="dispenser"
-            name="dispenser"
-            onChange={handleSelectChange}
-            required
-          >
-            <option value="">اختر ديسبنسر</option>
-            <option index="1" value="dispenser_1">
-              ديسبنسر 1
-            </option>
-            <option index="2" value="dispenser_2">
-              ديسبنسر 2
-            </option>
-            <option index="3" value="dispenser_3">
-              ديسبنسر 3
-            </option>
-            <option index="4" value="dispenser_4">
-              ديسبنسر 4
-            </option>
-          </select>
-        </div>
-
-        {/* Dynamically Added Inputs */}
-        {inputs
-          .map((input) => (
-            <div key={input.id} className="dynamic-input-wrapper">
-              <label htmlFor={input.id}>{input.label}</label>
-              <input
-                type="text"
-                id={input.id}
-                name={input.id}
-                placeholder={`أدخل قيمة لـ ${input.label}`}
-                required
-              />
-              <button
-                type="button"
-                className="remove-button"
-                onClick={() => removeInput(input.id)}
-              >
-                إزالة
-              </button>
+        {/* Add Dispenser Section */}
+        <div className="dispenser-section">
+          <label>الإستهلاك</label>
+          {dispensers.map((dispenser) => (
+            <div key={dispenser.id} className="dynamic-input-wrapper">
+              <div className="input-container">
+                <input
+                  type="number"
+                  placeholder={dispenser.label}
+                  onChange={(e) =>
+                    handleDispenserChange(dispenser.id, e.target.value)
+                  }
+                  value={dispensersValues[dispenser.id] || ''}
+                  required
+                />
+                <button
+                  type="button"
+                  className="remove-button-icon"
+                  onClick={() => removeDispenser(dispenser.id)}
+                  aria-label={`Remove ${dispenser.label}`}
+                >
+                  {/* Remove Icon */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M6 6L18 18M6 18L18 6"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
-          ))
-          .sort((a, b) => a.index - b.index)}
+          ))}
+          <button
+            type="button"
+            className="add-dispenser-btn"
+            onClick={addDispenser}
+          >
+            + إضافة ديسبنسر
+          </button>
+        </div>
+
+        <input
+          name="total_consumption"
+          style={{ display: 'none' }}
+          value={totalConsumption}
+          readOnly
+        />
 
         {/* Submit Button */}
         <div className="form-footer">
@@ -118,6 +145,18 @@ const AnimatedForm = () => {
           </button>
         </div>
       </form>
+    </div>
+  ) : (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Image src={correct} alt="Correct" />
+      تم تسجيل البيانات بنجاح
     </div>
   );
 };

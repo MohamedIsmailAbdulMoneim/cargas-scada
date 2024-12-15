@@ -3,7 +3,6 @@
 import { unstable_noStore as noStore } from 'next/cache';
 import * as validator from 'validator';
 
-
 const insertRegForm = async (prevState, formData) => {
   const reformatPhoneNumber = (countryCode, phoneNumber) => {
     const formattedCountryCode = countryCode.replace(/\D/g, '');
@@ -50,13 +49,23 @@ const insertRegForm = async (prevState, formData) => {
   };
 
   const validateCourseData = () => {
-    if (isInvalidText(regFormData.first_name_english) || /\d/.test(regFormData.first_name_english)) {
+    if (
+      isInvalidText(regFormData.first_name_english) ||
+      /\d/.test(regFormData.first_name_english)
+    ) {
       return { message: 'Invalid first name', severity: 'error' };
     }
-    if (isInvalidText(regFormData.last_name_english) || /\d/.test(regFormData.last_name_english)) {
+    if (
+      isInvalidText(regFormData.last_name_english) ||
+      /\d/.test(regFormData.last_name_english)
+    ) {
       return { message: 'Invalid last name', severity: 'error' };
     }
-    if(!validator.isMobilePhone(regFormData.phone_number, 'any', { strictMode: true })){
+    if (
+      !validator.isMobilePhone(regFormData.phone_number, 'any', {
+        strictMode: true,
+      })
+    ) {
       return { message: 'Invalid phone number', severity: 'error' };
     }
     if (
@@ -69,14 +78,20 @@ const insertRegForm = async (prevState, formData) => {
     if (isInvalidText(regFormData.email) || !isValidEmail(regFormData.email)) {
       return { message: 'Invalid email', severity: 'error' };
     }
-    if (isInvalidText(regFormData.student_country) || regFormData.student_country === 'Select') {
+    if (
+      isInvalidText(regFormData.student_country) ||
+      regFormData.student_country === 'Select'
+    ) {
       return { message: 'Invalid country', severity: 'error' };
     }
     if (isInvalidText(regFormData.birth_of_date)) {
       return { message: 'Invalid birth date', severity: 'error' };
     }
     if (formData.get('guradians_name') !== null) {
-      if (isInvalidText(regFormData.guardian_name) || /\d/.test(regFormData.guardian_name)) {
+      if (
+        isInvalidText(regFormData.guardian_name) ||
+        /\d/.test(regFormData.guardian_name)
+      ) {
         return { message: 'Invalid parent name', severity: 'error' };
       }
     }
@@ -86,11 +101,14 @@ const insertRegForm = async (prevState, formData) => {
         formData.get('parent_phone_code') === 'Select')
     ) {
       return { message: 'Invalid parent phone code', severity: 'error' };
-      
     }
     if (formData.get('parent_phone_code')) {
-      if(!validator.isMobilePhone(regFormData.guardian_number, 'any', { strictMode: true })){
-      return { message: 'Invalid guardian phone number', severity: 'error' };
+      if (
+        !validator.isMobilePhone(regFormData.guardian_number, 'any', {
+          strictMode: true,
+        })
+      ) {
+        return { message: 'Invalid guardian phone number', severity: 'error' };
       }
     }
     if (
