@@ -56,6 +56,8 @@ const insertConsumptionForm = async (prevState, formData) => {
         },
       );
 
+      console.log('ok');
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }

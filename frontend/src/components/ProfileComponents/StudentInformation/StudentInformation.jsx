@@ -9,6 +9,7 @@ import Image from 'next/image';
 import data from '@/assets/static_data/data.json';
 
 const AnimatedForm = () => {
+  const [governorate, setGovernorate] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
   const [dispensers, setDispensers] = useState([
     { id: 'dispenser_1', label: 'Dispenser 1' },
@@ -53,33 +54,50 @@ const AnimatedForm = () => {
     0,
   );
 
+  const governorates = [...new Set(data.map((col) => col.governorate))];
+
+  const stations = data
+    .filter((col) => col.governorate === governorate)
+    .map((row) => row.station_name);
+
   return state.message !== 'Valid data' ? (
     <div className={`form-container ${formVisible ? 'visible' : ''}`}>
-      <h2 className="form-title">حساب الإستهلاك اليومي</h2>
+      <h2 className="form-title">ادخل الإستهلاك اليومي</h2>
       <form dir="rtl" className="form" action={formAction}>
         {/* Governorate Input */}
         <div className="input-wrapper">
-          <label htmlFor="area">المحافظة</label>
-          <select id="area" name="area_name" required>
-            <option value="">اختر المحافظة</option>
-            <option value="east_cairo">شرق القاهرة</option>
-            <option value="west_cairo">غرب القاهرة</option>
+          <label htmlFor="governorate_name">المحافظة</label>
+          <select
+            onChange={(e) => setGovernorate(e.target.value)}
+            id="governorate_name"
+            name="governorate_name"
+            required
+          >
+            <option>اختر...</option>
+            {governorates.map((gov) => (
+              <option key={gov}>{gov}</option>
+            ))}
           </select>
         </div>
 
         {/* Area Selection */}
-        <div className="input-wrapper">
+        {/* <div className="input-wrapper">
           <label htmlFor="area">المنطقة</label>
           <select id="area" name="area_name" required>
             <option value="">اختر المنطقة</option>
             <option value="east_cairo">شرق القاهرة</option>
             <option value="west_cairo">غرب القاهرة</option>
           </select>
-        </div>
+        </div> */}
 
         <div className="input-wrapper">
-          <label htmlFor="station">المحطة</label>
-          <input id="station" name="station_name" required />
+          <label htmlFor="station">المحافظة</label>
+          <select id="station" name="station_name" required>
+            <option>اختر...</option>
+            {stations.map((station) => (
+              <option key={station}>{station}</option>
+            ))}
+          </select>
         </div>
 
         {/* Add Dispenser Section */}
